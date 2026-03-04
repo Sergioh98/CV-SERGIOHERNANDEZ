@@ -6,6 +6,35 @@
     --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
 }
 
+/* --- CURSOR GLOW EFFECT --- */
+
+.cursor-glow{
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle,
+        rgba(37,99,235,0.25) 0%,
+        rgba(37,99,235,0.12) 30%,
+        rgba(37,99,235,0.06) 45%,
+        transparent 70%
+    );
+
+    filter: blur(40px);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    transition: transform 0.05s linear;
+}
+
+/* asegura que el contenido esté por encima */
+
+.cv-container{
+    position: relative;
+    z-index: 2;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -342,6 +371,7 @@ p{
         transform:translateY(0);
     }
 }
+
 
 
 
