@@ -47,7 +47,7 @@ html, body {
 }
 
 body {
-    background: linear-gradient(135deg,#e2e8f0,#cbd5f5);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -371,6 +371,63 @@ p{
         transform:translateY(0);
     }
 }
+
+/* ============================= */
+/* BACKGROUND TECH GRID EFFECT */
+/* ============================= */
+
+.tech-grid{
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    
+    background-image:
+        linear-gradient(rgba(37,99,235,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.15) 1px, transparent 1px);
+
+    background-size: 60px 60px;
+
+    animation: gridMove 20s linear infinite;
+}
+
+/* brillo suave encima del grid */
+
+.tech-grid::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(37,99,235,0.15),
+        transparent 60%
+    );
+
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+/* animación de movimiento */
+
+@keyframes gridMove{
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(60px);
+    }
+}
+
+/* respiración de luz */
+
+@keyframes gridPulse{
+    0%,100%{
+        opacity:0.3;
+    }
+    50%{
+        opacity:0.6;
+    }
+}
+
 
 
 
