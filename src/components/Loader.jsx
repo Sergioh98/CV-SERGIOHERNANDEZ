@@ -14,8 +14,8 @@ function Loader() {
   const [desvaneciendo, setDesvaneciendo] = useState(false)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setDesvaneciendo(true), 700)
-    const t2 = setTimeout(() => setVisible(false), 1300)
+    const t1 = setTimeout(() => setDesvaneciendo(true), 1500)
+    const t2 = setTimeout(() => setVisible(false), 2100)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
@@ -27,8 +27,20 @@ function Loader() {
   return (
     <div id="loader" className={desvaneciendo ? 'loader loader--oculto' : 'loader'}>
       <div className="loader__contenido">
-        <div className="loader__logo">S</div>
-        <p>Cargando perfil...</p>
+        <div className="loader__anillo">
+          <span className="loader__icono">{'</>'}</span>
+        </div>
+        <p className="loader__texto">
+          Cargando perfil
+          <span className="loader__puntos" aria-hidden="true">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </span>
+        </p>
+        <div className="loader__barra">
+          <div className="loader__barra-relleno" />
+        </div>
       </div>
     </div>
   )

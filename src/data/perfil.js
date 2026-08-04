@@ -7,7 +7,7 @@ export const perfil = {
   email: 'sahp2017@gmail.com',
   github: 'https://github.com/Sergioh98',
   linkedin: '#',
-  cvPdf: '/cv.pdf',
+  cvPdf: 'cv.pdf',
 }
 
 // skills: React va primero y marcado como "principal" a proposito — es

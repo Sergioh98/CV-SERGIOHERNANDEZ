@@ -14,7 +14,7 @@ const aniosActivo = new Date().getFullYear() - 2019
 // nombre con insignia de "verificado", metricas tipo posts/seguidores,
 // y botones de accion en vez de una simple lista de contacto.
 function PerfilSidebar() {
-  const { escrito, terminado } = useTypewriter(perfil.nombre, { velocidad: 90, delayInicial: 900 })
+  const { escrito, terminado } = useTypewriter(perfil.nombre, { velocidad: 90, delayInicial: 1600 })
 
   // videoError guarda si el video de perfil fallo al cargar (por ejemplo
   // si todavia no se copio sergio.mp4 a public/). Si falla, mostramos un
@@ -36,7 +36,7 @@ function PerfilSidebar() {
             playsInline
             onError={() => setVideoError(true)}
           >
-            <source src="/sergio.mp4" type="video/mp4" />
+            <source src="sergio.mp4" type="video/mp4" />
           </video>
         ) : (
           <div className="sidebar__avatar-fallback">SH</div>

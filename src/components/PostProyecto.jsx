@@ -21,7 +21,7 @@ function PostProyecto({ proyecto }) {
 
       {proyecto.imagen ? (
         <div className="post__imagen-wrap">
-          <img src={`/${proyecto.imagen}`} alt={`Captura de ${proyecto.nombre}`} loading="lazy" />
+          <img src={proyecto.imagen} alt={`Captura de ${proyecto.nombre}`} loading="lazy" />
         </div>
       ) : (
         <div className="post__imagen-wrap post__imagen-wrap--codigo" aria-hidden="true">
