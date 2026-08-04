@@ -67,6 +67,7 @@ a {
   color: white;
   font-weight: 700;
   font-size: 18px;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -76,6 +77,9 @@ a {
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   text-decoration: none;
   color: #cbd5f5;
   font-size: 14px;
@@ -83,7 +87,8 @@ a {
   transition: 0.25s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.nav-link--activo {
   color: var(--acento-verde);
 }
 
@@ -98,7 +103,8 @@ a {
   transition: 0.3s;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.nav-link--activo::after {
   width: 100%;
 }
 
@@ -943,6 +949,176 @@ h2 i {
 }
 
 /* ==========================================================
+   PAGINAS DE SERVICIO (Tienda / OSINT)
+   Mismo lenguaje visual que .cv-container (glass, blur, bordes suaves)
+   pero en tarjetas independientes en vez de un layout de 2 columnas,
+   porque este contenido es una grilla, no un perfil.
+   ========================================================== */
+.pagina-servicio {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 40px;
+}
+
+.pagina-servicio__hero {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  padding: 50px 24px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.pagina-servicio__hero > i {
+  font-size: 42px;
+  color: var(--acento-verde);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.pagina-servicio__hero--osint > i {
+  color: var(--acento-cyan);
+}
+
+.pagina-servicio__hero h1 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.pagina-servicio__hero p {
+  color: var(--text-grey);
+  max-width: 560px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.pagina-servicio__hero .btn-social {
+  display: inline-flex;
+  width: auto;
+  padding: 12px 26px;
+}
+
+.pagina-servicio__categoria {
+  color: white;
+  font-size: 19px;
+  margin-bottom: 18px;
+}
+
+.productos-grid,
+.osint-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.producto-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: 0.3s;
+  min-width: 0;
+}
+
+.producto-card:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.producto-card h3 {
+  color: white;
+  font-size: 16px;
+  padding-right: 70px;
+}
+
+.producto-card__precio {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--acento-verde);
+}
+
+.producto-card__descripcion {
+  font-size: 13px;
+  color: var(--text-grey);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.producto-card__badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.osint-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  transition: 0.3s;
+  min-width: 0;
+}
+
+.osint-card:hover {
+  border-color: rgba(0, 225, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.osint-card i {
+  font-size: 26px;
+  color: var(--acento-cyan);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.osint-card h3 {
+  color: white;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.osint-card p {
+  font-size: 13px;
+  color: var(--text-grey);
+  line-height: 1.5;
+}
+
+.pagina-servicio__disclaimer {
+  margin: 36px auto 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-grey);
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+.pagina-servicio__disclaimer i {
+  color: var(--acento-verde);
+  margin-right: 6px;
+}
+
+/* ==========================================================
    RESPONSIVE
    ========================================================== */
 @media (max-width: 768px) {
@@ -986,7 +1162,9 @@ h2 i {
   }
 
   .nav-links-movil a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 14px;
     border-radius: 8px;
     color: #cbd5f5;
@@ -996,7 +1174,8 @@ h2 i {
   }
 
   .nav-links-movil a:hover,
-  .nav-links-movil a:active {
+  .nav-links-movil a:active,
+  .nav-links-movil a.nav-link--activo {
     background: rgba(37, 99, 235, 0.18);
     color: var(--acento-verde);
   }

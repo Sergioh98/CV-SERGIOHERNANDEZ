@@ -1,30 +1,40 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-// Navbar es la barra fija de arriba, con enlaces que saltan a cada
-// seccion por su id (#about, #experience, etc.) — anclas normales de
-// HTML, sin necesidad de una libreria de rutas para una sola pagina.
+// Las 3 areas de servicio. "fin: true" en Desarrollador hace que su
+// NavLink solo se marque activo en "/" exacto (si no, matchearia
+// tambien /tienda y /osint por el prefijo compartido).
 const enlaces = [
-  { href: '#about', texto: 'Sobre mí' },
-  { href: '#experience', texto: 'Experiencia' },
-  { href: '#skills', texto: 'Stack' },
-  { href: '#projects', texto: 'Proyectos' },
-  { href: '#github', texto: 'GitHub' },
+  { to: '/', texto: 'Desarrollador', icono: 'ri-code-s-slash-line', fin: true },
+  { to: '/tienda', texto: 'Tienda', icono: 'ri-store-2-line' },
+  { to: '/osint', texto: 'OSINT', icono: 'ri-search-eye-line' },
 ]
 
-// En mobile, .nav-links se oculta por espacio (ver CSS), asi que aqui
-// agregamos un boton de hamburguesa + un menu desplegable propio para
-// que los enlaces sigan disponibles en vez de desaparecer sin mas.
+function claseEnlace({ isActive }) {
+  return isActive ? 'nav-link--activo' : ''
+}
+
+// Navbar es la barra fija de arriba. Antes tenia anclas a secciones de
+// una sola pagina (#about, #experience...); ahora son rutas reales a
+// las 3 areas de servicio (Desarrollador / Tienda / OSINT). En mobile
+// se oculta .nav-links por espacio y aparece un boton de hamburguesa
+// con un menu desplegable propio con los mismos enlaces.
 function Navbar() {
   const [abierto, setAbierto] = useState(false)
 
   return (
     <nav className="navbar">
-      <div className="nav-logo">Sergio Dev</div>
+      <NavLink to="/" className="nav-logo" onClick={() => setAbierto(false)}>
+        Sergio Dev
+      </NavLink>
 
       <ul className="nav-links">
         {enlaces.map((enlace) => (
-          <li key={enlace.href}>
-            <a href={enlace.href}>{enlace.texto}</a>
+          <li key={enlace.to}>
+            <NavLink to={enlace.to} end={enlace.fin} className={claseEnlace}>
+              <i className={enlace.icono} aria-hidden="true" />
+              {enlace.texto}
+            </NavLink>
           </li>
         ))}
       </ul>
@@ -42,10 +52,11 @@ function Navbar() {
       {abierto && (
         <ul className="nav-links-movil">
           {enlaces.map((enlace) => (
-            <li key={enlace.href}>
-              <a href={enlace.href} onClick={() => setAbierto(false)}>
+            <li key={enlace.to}>
+              <NavLink to={enlace.to} end={enlace.fin} className={claseEnlace} onClick={() => setAbierto(false)}>
+                <i className={enlace.icono} aria-hidden="true" />
                 {enlace.texto}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>

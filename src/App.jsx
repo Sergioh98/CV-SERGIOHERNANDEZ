@@ -1,38 +1,29 @@
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Loader from './components/Loader'
 import FondoAmbiente from './components/FondoAmbiente'
 import Navbar from './components/Navbar'
-import PerfilSidebar from './components/PerfilSidebar'
-import SobreMi from './components/SobreMi'
-import Experiencia from './components/Experiencia'
-import Skills from './components/Skills'
-import Proyectos from './components/Proyectos'
-import GithubCta from './components/GithubCta'
+import PaginaDesarrollador from './pages/PaginaDesarrollador'
+import PaginaTienda from './pages/PaginaTienda'
+import PaginaOsint from './pages/PaginaOsint'
 
-// App arma la pagina completa. Es un componente "de layout": no guarda
-// datos propios (todo vive en src/data/), solo decide el orden en el
-// que aparecen las piezas. El layout de dos columnas (sidebar + content)
-// vive en el CSS, en .cv-container.
+// App ahora es el shell de rutas: Loader/FondoAmbiente/Navbar son
+// globales (se ven en las 3 areas), y las paginas cambian debajo segun
+// la ruta. Se usa HashRouter (URLs con #/tienda) en vez de BrowserRouter
+// porque GitHub Pages sirve el sitio como estatico — sin esto, entrar
+// directo a /tienda o recargar esa pagina daria 404.
 function App() {
   return (
-    <>
+    <HashRouter>
       <Loader />
       <FondoAmbiente />
       <Navbar />
 
-      <div className="page-wrap">
-        <main className="cv-container">
-          <PerfilSidebar />
-
-          <section className="content">
-            <SobreMi />
-            <Experiencia />
-            <Skills />
-            <Proyectos />
-            <GithubCta />
-          </section>
-        </main>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<PaginaDesarrollador />} />
+        <Route path="/tienda" element={<PaginaTienda />} />
+        <Route path="/osint" element={<PaginaOsint />} />
+      </Routes>
+    </HashRouter>
   )
 }
 
