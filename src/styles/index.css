@@ -102,6 +102,21 @@ a {
   width: 100%;
 }
 
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-links-movil {
+  display: none;
+}
+
 /* ==========================================================
    FONDO: GRILLA TECNOLOGICA + GLOW DEL CURSOR
    ========================================================== */
@@ -164,21 +179,25 @@ a {
    SIDEBAR = TARJETA DE PERFIL ESTILO RED SOCIAL
    ========================================================== */
 .sidebar {
+  --sidebar-pad: 30px;
   background: #172131;
   color: white;
-  padding: 0 30px 40px 30px;
+  padding: 0 var(--sidebar-pad) 40px var(--sidebar-pad);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  min-width: 0;
 }
 
-/* PORTADA: banda de "cover photo" animada, como en un perfil social */
+/* PORTADA: banda de "cover photo" animada, como en un perfil social.
+   El ancho/margen se calculan a partir de --sidebar-pad (en vez de un
+   30px fijo) para que siga alineada con el borde real del card cuando
+   el padding del sidebar se reduce en mobile. */
 .sidebar__portada {
-  width: 100%;
   height: 90px;
-  margin: 0 -30px;
-  width: calc(100% + 60px);
+  margin: 0 calc(-1 * var(--sidebar-pad));
+  width: calc(100% + (var(--sidebar-pad) * 2));
   background: linear-gradient(120deg, var(--primary-dark), var(--primary), var(--acento-cyan));
   background-size: 200% 200%;
   animation: portadaFlow 8s ease infinite;
@@ -392,6 +411,7 @@ a {
 .content {
   padding: 40px;
   color: white;
+  min-width: 0;
 }
 
 .section-box {
@@ -931,7 +951,8 @@ h2 i {
   }
 
   .sidebar {
-    padding: 0 24px 32px 24px;
+    --sidebar-pad: 24px;
+    padding: 0 var(--sidebar-pad) 32px var(--sidebar-pad);
   }
 
   .content {
@@ -942,7 +963,74 @@ h2 i {
     display: none;
   }
 
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links-movil {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.97);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-links-movil a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #cbd5f5;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.2s;
+  }
+
+  .nav-links-movil a:hover,
+  .nav-links-movil a:active {
+    background: rgba(37, 99, 235, 0.18);
+    color: var(--acento-verde);
+  }
+
   .cursor-glow {
     display: none;
+  }
+}
+
+/* Telefonos angostos (la mayoria: iPhone SE/12/13/14, Android tipico):
+   un poco menos de padding y texto para que nada se corte de lado. */
+@media (max-width: 480px) {
+  .page-wrap {
+    padding: 100px 10px 40px 10px;
+  }
+
+  .sidebar {
+    --sidebar-pad: 18px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .sidebar__avatar-wrap {
+    width: 116px;
+    height: 116px;
+  }
+
+  .sidebar__metricas {
+    gap: 4px;
+  }
+
+  .sidebar__metrica span {
+    font-size: 10px;
   }
 }
