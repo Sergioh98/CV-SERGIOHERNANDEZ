@@ -5,6 +5,8 @@ import Navbar from './components/Navbar'
 import PaginaDesarrollador from './pages/PaginaDesarrollador'
 import PaginaTienda from './pages/PaginaTienda'
 import PaginaOsint from './pages/PaginaOsint'
+import PaginaMenus from './pages/menus/PaginaMenus'
+import PaginaTiffy from './pages/menus/PaginaTiffy'
 
 // App ahora es el shell de rutas: Loader/FondoAmbiente/Navbar son
 // globales (se ven en las 3 areas), y las paginas cambian debajo segun
@@ -22,6 +24,8 @@ function App() {
         <Route path="/" element={<PaginaDesarrollador />} />
         <Route path="/tienda" element={<PaginaTienda />} />
         <Route path="/osint" element={<PaginaOsint />} />
+        <Route path="/menus" element={<PaginaMenus />} />
+        <Route path="/tiffy" element={<PaginaTiffy />} />
       </Routes>
     </HashRouter>
   )

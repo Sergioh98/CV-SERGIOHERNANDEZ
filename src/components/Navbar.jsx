@@ -1,17 +1,21 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
-// Las 3 areas de servicio. "fin: true" en Desarrollador hace que su
+// Las 4 areas de servicio. "fin: true" en Desarrollador hace que su
 // NavLink solo se marque activo en "/" exacto (si no, matchearia
-// tambien /tienda y /osint por el prefijo compartido).
+// tambien /tienda y /osint por el prefijo compartido). "rutasExtra" en
+// Menús cubre las paginas de cada restaurante (/tiffy, /minona,
+// /dalila), que no cuelgan de /menus pero conceptualmente son parte
+// de esa misma area.
 const enlaces = [
   { to: '/', texto: 'Desarrollador', icono: 'ri-code-s-slash-line', fin: true },
   { to: '/tienda', texto: 'Tienda', icono: 'ri-store-2-line' },
   { to: '/osint', texto: 'OSINT', icono: 'ri-search-eye-line' },
+  { to: '/menus', texto: 'Menús', icono: 'ri-restaurant-2-line', rutasExtra: ['/tiffy', '/minona', '/dalila'] },
 ]
 
-function claseEnlace({ isActive }) {
-  return isActive ? 'nav-link--activo' : ''
+function crearClaseEnlace(activaPorExtra) {
+  return ({ isActive }) => (isActive || activaPorExtra ? 'nav-link--activo' : '')
 }
 
 // Navbar es la barra fija de arriba. Antes tenia anclas a secciones de
@@ -21,6 +25,7 @@ function claseEnlace({ isActive }) {
 // con un menu desplegable propio con los mismos enlaces.
 function Navbar() {
   const [abierto, setAbierto] = useState(false)
+  const { pathname } = useLocation()
 
   return (
     <nav className="navbar">
@@ -29,14 +34,17 @@ function Navbar() {
       </NavLink>
 
       <ul className="nav-links">
-        {enlaces.map((enlace) => (
-          <li key={enlace.to}>
-            <NavLink to={enlace.to} end={enlace.fin} className={claseEnlace}>
-              <i className={enlace.icono} aria-hidden="true" />
-              {enlace.texto}
-            </NavLink>
-          </li>
-        ))}
+        {enlaces.map((enlace) => {
+          const activaPorExtra = enlace.rutasExtra?.includes(pathname)
+          return (
+            <li key={enlace.to}>
+              <NavLink to={enlace.to} end={enlace.fin} className={crearClaseEnlace(activaPorExtra)}>
+                <i className={enlace.icono} aria-hidden="true" />
+                {enlace.texto}
+              </NavLink>
+            </li>
+          )
+        })}
       </ul>
 
       <button
@@ -51,14 +59,22 @@ function Navbar() {
 
       {abierto && (
         <ul className="nav-links-movil">
-          {enlaces.map((enlace) => (
-            <li key={enlace.to}>
-              <NavLink to={enlace.to} end={enlace.fin} className={claseEnlace} onClick={() => setAbierto(false)}>
-                <i className={enlace.icono} aria-hidden="true" />
-                {enlace.texto}
-              </NavLink>
-            </li>
-          ))}
+          {enlaces.map((enlace) => {
+            const activaPorExtra = enlace.rutasExtra?.includes(pathname)
+            return (
+              <li key={enlace.to}>
+                <NavLink
+                  to={enlace.to}
+                  end={enlace.fin}
+                  className={crearClaseEnlace(activaPorExtra)}
+                  onClick={() => setAbierto(false)}
+                >
+                  <i className={enlace.icono} aria-hidden="true" />
+                  {enlace.texto}
+                </NavLink>
+              </li>
+            )
+          })}
         </ul>
       )}
     </nav>
