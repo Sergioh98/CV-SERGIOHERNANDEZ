@@ -31,7 +31,7 @@ const restaurantesPortafolio = [
     resumen: 'Desayunos, brunch, carta de restaurante y bar completa.',
     ruta: '/dalila',
     icono: 'ri-goblet-line',
-    disponible: false,
+    disponible: true,
   },
 ]
 

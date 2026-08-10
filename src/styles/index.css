@@ -1739,6 +1739,19 @@ a.menu-portafolio-card:hover {
   letter-spacing: -0.5px;
 }
 
+/* ---------- TEMA: DALILA ---------- */
+.menu-restaurante--dalila {
+  --menu-primario: #a62c6c;
+  --menu-primario-oscuro: #3d0f26;
+  --menu-sobre-primario: #fceef5;
+  --menu-acento: #e8b94e;
+  --menu-fuente-titulo: 'Playfair Display', 'Georgia', serif;
+}
+
+.menu-restaurante--dalila .menu-hero__titulo {
+  font-style: italic;
+}
+
 /* ==========================================================
    RESPONSIVE
    ========================================================== */
