@@ -1223,13 +1223,42 @@ a.menu-portafolio-card:hover {
   align-items: center;
   justify-content: center;
   height: 100%;
+  min-height: 280px;
 }
 
-.menu-hero__imagen img {
+.menu-hero__carrusel {
+  position: relative;
+  width: 100%;
+  height: 320px;
+}
+
+.menu-hero__carrusel-img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
   max-width: 100%;
   max-height: 320px;
   object-fit: contain;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.menu-hero__carrusel-img--activa {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.menu-hero__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 .menu-hero__contenido {
@@ -1389,130 +1418,218 @@ a.menu-portafolio-card:hover {
   color: var(--menu-sobre-primario);
 }
 
-/* ---------- GRID DE PRODUCTOS ---------- */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+/* ---------- CARRUSEL DE PRODUCTOS ----------
+   Reemplaza el grid de tarjetas apiladas: un producto a la vez, la
+   foto desliza hacia el lado al cambiar (transform en .menu-carrusel__pista)
+   y las especificaciones aparecen debajo. Pedido explícito del cliente. */
+.menu-carrusel {
+  max-width: 560px;
+  margin: 0 auto;
 }
 
-.menu-grid__vacio {
+.menu-carrusel__vacio {
   color: var(--text-grey);
   text-align: center;
   padding: 40px 0;
 }
 
-.menu-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: 0.3s;
-  min-width: 0;
-}
-
-.menu-card:hover {
-  border-color: var(--menu-primario);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
-
-.menu-card__imagen {
+.menu-carrusel__viewport {
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.menu-carrusel__pista {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.menu-carrusel__slide {
+  position: relative;
+  flex: 0 0 100%;
   aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Fondo tematizado (no #0b1220 fijo): algunas fotos de producto
+  /* Fondo tematizado (no un navy fijo): algunas fotos de producto
      tienen su propio fondo blanco o transparente, y un fondo oscuro
-     de marca disimula mejor esa inconsistencia que el navy genérico. */
+     de marca disimula mejor esa inconsistencia que un color genérico. */
   background: var(--menu-primario-oscuro, #0b1220);
 }
 
-.menu-card__imagen img {
+.menu-carrusel__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.menu-card__imagen > i {
-  font-size: 40px;
+.menu-carrusel__slide > i {
+  font-size: 56px;
   color: rgba(255, 255, 255, 0.55);
 }
 
-.menu-card__badge {
+.menu-carrusel__badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   background: var(--menu-primario);
   color: var(--menu-sobre-primario);
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
 }
 
-.menu-card__cuerpo {
-  padding: 16px;
+.menu-carrusel__flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(15, 23, 42, 0.55);
+  color: white;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: 0.2s;
+}
+
+.menu-carrusel__flecha:hover {
+  background: var(--menu-primario);
+}
+
+.menu-carrusel__flecha--izq {
+  left: 12px;
+}
+
+.menu-carrusel__flecha--der {
+  right: 12px;
+}
+
+.menu-carrusel__puntos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.menu-carrusel__punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-carrusel__punto--activo {
+  background: var(--menu-primario);
+  width: 22px;
+  border-radius: 5px;
+}
+
+.menu-carrusel__specs {
+  text-align: center;
+  padding: 4px 6px 0;
+  animation: menuCarruselEntrada 0.35s ease;
+}
+
+@keyframes menuCarruselEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-carrusel__specs h3 {
+  color: white;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.menu-carrusel__descripcion {
+  color: var(--text-grey);
+  font-size: 13.5px;
+  line-height: 1.55;
+  max-width: 420px;
+  margin: 0 auto 16px;
+}
+
+.menu-carrusel__variantes {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.menu-carrusel__variantes li {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  flex: 1;
-}
-
-.menu-card__cuerpo h3 {
-  font-size: 15px;
-  color: white;
-}
-
-.menu-card__descripcion {
-  font-size: 12.5px;
-  color: var(--text-grey);
-  line-height: 1.45;
-  flex: 1;
-}
-
-.menu-card__pie {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px 16px;
+  min-width: 84px;
 }
 
-.menu-card__precio {
-  font-size: 16px;
+.menu-carrusel__variantes li span {
+  font-size: 11px;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.menu-carrusel__variantes li strong {
+  color: white;
+  font-size: 15px;
+}
+
+.menu-carrusel__precio {
+  font-size: 26px;
   font-weight: 800;
   color: white;
-  white-space: nowrap;
+  margin-bottom: 18px;
 }
 
-.menu-card__precio small {
-  font-size: 10.5px;
-  font-weight: 500;
-  color: var(--text-grey);
-}
-
-.menu-card__boton {
+.menu-carrusel__boton {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  margin-bottom: 12px;
   background: var(--menu-primario);
   color: var(--menu-sobre-primario);
-  padding: 8px 14px;
+  padding: 12px 28px;
   border-radius: 50px;
-  font-size: 12.5px;
   font-weight: 700;
-  white-space: nowrap;
+  font-size: 14px;
 }
 
-.menu-card__boton:hover {
+.menu-carrusel__boton:hover {
   filter: brightness(1.1);
+}
+
+.menu-carrusel__contador {
+  font-size: 12px;
+  color: var(--text-grey);
 }
 
 /* ---------- FOOTER ---------- */
@@ -1686,8 +1803,14 @@ a.menu-portafolio-card:hover {
     text-align: center;
   }
 
-  .menu-hero__imagen img {
+  .menu-hero__imagen {
+    min-height: 0;
+  }
+
+  .menu-hero__carrusel,
+  .menu-hero__carrusel-img {
     max-height: 200px;
+    height: 200px;
   }
 
   .menu-hero__titulo {
@@ -1772,26 +1895,27 @@ a.menu-portafolio-card:hover {
     font-size: 17px;
   }
 
-  .menu-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
+  .menu-carrusel__flecha {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
   }
 
-  .menu-card__cuerpo {
-    padding: 12px;
+  .menu-carrusel__specs h3 {
+    font-size: 17px;
   }
 
-  /* En 2 columnas angostas no cabe precio + botón en la misma fila
-     (el texto del botón se corta) — se apilan y el botón ocupa todo
-     el ancho para que siga siendo fácil de tocar. */
-  .menu-card__pie {
-    flex-direction: column;
-    align-items: stretch;
+  .menu-carrusel__variantes li {
+    padding: 7px 12px;
+    min-width: 72px;
   }
 
-  .menu-card__boton {
-    justify-content: center;
-    padding: 8px 11px;
-    font-size: 12px;
+  .menu-carrusel__precio {
+    font-size: 22px;
+  }
+
+  .menu-carrusel__boton {
+    padding: 11px 22px;
+    font-size: 13px;
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import MenuHero from '../../components/menu/MenuHero'
 import CategoryTabs from '../../components/menu/CategoryTabs'
-import ProductGrid from '../../components/menu/ProductGrid'
+import ProductCarousel from '../../components/menu/ProductCarousel'
 import RestaurantFooter from '../../components/menu/RestaurantFooter'
 import { restaurante, categorias, productos, coloresPorCategoria } from '../../data/restaurantes/tiffy'
 
@@ -9,6 +9,16 @@ const statsHero = [
   { valor: '10+', etiqueta: 'Sabores de torta' },
   { valor: '10', etiqueta: 'Categorías' },
   { valor: '8am-10pm', etiqueta: 'Horario' },
+]
+
+// Fotos que rotan en el hero — todas tortas reales (el producto
+// protagonista), no solo una imagen estática.
+const imagenesHero = [
+  'https://somostifi.com/wp-content/uploads/2025/10/Tifi-Cake.png',
+  'https://somostifi.com/wp-content/uploads/2025/10/Red.png',
+  'https://somostifi.com/wp-content/uploads/2025/10/Zanahoria%E2%80%8B.png',
+  'https://somostifi.com/wp-content/uploads/2025/11/Chocolate%E2%80%8B.png',
+  'https://somostifi.com/wp-content/uploads/2025/10/Arequipe.png',
 ]
 
 // PaginaTiffy: el producto protagonista son las tortas, así que esa es
@@ -30,13 +40,13 @@ function PaginaTiffy() {
         eyebrow="Repostería · Café · Panadería"
         titulo="Tortas que hacen la vida más especial"
         descripcion="Bizcochos artesanales, cheesecakes y postres horneados en casa cada día. Pide tu torta favorita o arma tu pedido de cumpleaños directo por WhatsApp."
-        imagen="https://somostifi.com/wp-content/uploads/2025/10/Tifi-Cake.png"
+        imagenes={imagenesHero}
         stats={statsHero}
       />
 
       <main className="menu-contenido" id="menu-productos">
         <CategoryTabs categorias={categorias} activa={categoriaActiva} onCambiar={setCategoriaActiva} />
-        <ProductGrid
+        <ProductCarousel
           productos={productosFiltrados}
           whatsapp={restaurante.whatsapp}
           nombreRestaurante={restaurante.nombreCompleto}
