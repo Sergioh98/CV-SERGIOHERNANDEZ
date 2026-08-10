@@ -23,7 +23,7 @@ export const restaurante = {
     instagram: 'https://instagram.com/somostifi',
     facebook: 'https://facebook.com/somostifi',
   },
-  logo: '/images/tiffy/logo.png',
+  logo: 'images/tiffy/logo.png',
 }
 
 export const categorias = [
@@ -58,7 +58,7 @@ export const coloresPorCategoria = {
 }
 
 const CDN = 'https://somostifi.com/wp-content/uploads'
-const IMG = '/images/tiffy'
+const IMG = 'images/tiffy'
 
 export const productos = [
   // TORTAS — cada sabor en 3 tamaños (Mini, Media Libra, Libra)
