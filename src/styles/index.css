@@ -1725,6 +1725,20 @@ a.menu-portafolio-card:hover {
   --menu-fuente-titulo: 'Fraunces', 'Georgia', serif;
 }
 
+/* ---------- TEMA: MI NONA ---------- */
+.menu-restaurante--minona {
+  --menu-primario: #c0392b;
+  --menu-primario-oscuro: #4a1509;
+  --menu-sobre-primario: #fff3e8;
+  --menu-acento: #f4a35a;
+  --menu-fuente-titulo: 'Archivo', 'Segoe UI', sans-serif;
+}
+
+.menu-restaurante--minona .menu-hero__titulo {
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
 /* ==========================================================
    RESPONSIVE
    ========================================================== */

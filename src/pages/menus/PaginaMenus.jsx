@@ -22,7 +22,7 @@ const restaurantesPortafolio = [
     resumen: 'Menú empresarial, brunch, pizzas y una extensa carta de café en el centro histórico.',
     ruta: '/minona',
     icono: 'ri-restaurant-2-line',
-    disponible: false,
+    disponible: true,
   },
   {
     id: 'dalila',

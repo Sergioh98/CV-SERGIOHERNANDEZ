@@ -7,6 +7,7 @@ import PaginaTienda from './pages/PaginaTienda'
 import PaginaOsint from './pages/PaginaOsint'
 import PaginaMenus from './pages/menus/PaginaMenus'
 import PaginaTiffy from './pages/menus/PaginaTiffy'
+import PaginaMinona from './pages/menus/PaginaMinona'
 
 // Rutas de restaurante: son paginas "cliente" que deben sentirse como
 // el sitio propio del negocio, no como una seccion mas del portafolio,
@@ -32,6 +33,7 @@ function Shell() {
         <Route path="/osint" element={<PaginaOsint />} />
         <Route path="/menus" element={<PaginaMenus />} />
         <Route path="/tiffy" element={<PaginaTiffy />} />
+        <Route path="/minona" element={<PaginaMinona />} />
       </Routes>
     </>
   )
