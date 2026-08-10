@@ -60,6 +60,18 @@ export const coloresPorCategoria = {
 const CDN = 'https://somostifi.com/wp-content/uploads'
 const IMG = 'images/tiffy'
 
+// fotosPorCategoria: foto real representativa para productos SIN foto
+// propia dentro de esa categoría (ej. una "porción" que no tiene su
+// propio render). No es una foto exacta de cada producto — es la
+// mejor foto real disponible de esa categoría, mejor que dejar solo
+// el degradado. Categorías sin ninguna foto real disponible en
+// somostifi.com (helados, pizzetas, sándwich, panadería, galletas,
+// bebidas) se quedan con el degradado — no hay foto real que usar ahí.
+export const fotosPorCategoria = {
+  postres: `${CDN}/2025/10/chaja.png`,
+  cafe: `${IMG}/taza-cafe-tifi.png`,
+}
+
 export const productos = [
   // TORTAS — cada sabor en 3 tamaños (Mini, Media Libra, Libra)
   { id: 'torta-tifi-cake', nombre: 'Tifi Cake', categoria: 'tortas', imagen: `${CDN}/2025/10/Tifi-Cake.png`, descripcion: 'La torta insignia de la casa. Bizcocho suave con el relleno clásico de Tifi.', destacado: true, variantes: [{ etiqueta: 'Mini', precio: 19900 }, { etiqueta: 'Media Libra', precio: 36000 }, { etiqueta: 'Libra', precio: 59000 }] },

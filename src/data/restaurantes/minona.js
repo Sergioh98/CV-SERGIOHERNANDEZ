@@ -64,6 +64,25 @@ export const coloresPorCategoria = {
   nuevos: ['#E0503A', '#7A1F14'],
 }
 
+const FOTOS = 'https://minonacafe.com/wp-content/uploads/2024/11'
+
+// fotosPorCategoria: foto real representativa (tomada del propio sitio
+// de Mi Nona) para productos sin foto propia — mejor que dejar solo
+// el degradado en categorías tan grandes como esta.
+export const fotosPorCategoria = {
+  empresarial: `${FOTOS}/DSC02464-1-scaled.jpg`,
+  desayunos: `${FOTOS}/DSC06242s-1-scaled.jpg`,
+  brunch: `${FOTOS}/DSC_6949-02-scaled.jpg`,
+  cafe: `${FOTOS}/DSC04434-scaled.jpg`,
+  'cafe-frio': `${FOTOS}/DSC04434-scaled.jpg`,
+  'pizzas-personales': `${FOTOS}/DSC06181-1-scaled.jpg`,
+  'pizzas-pequenas': `${FOTOS}/DSC06181-1-scaled.jpg`,
+  'pizzas-grandes': `${FOTOS}/DSC06181-1-scaled.jpg`,
+  entradas: `${FOTOS}/DSC01733s-scaled.jpg`,
+  pastas: `${FOTOS}/DSC04348-scaled.jpg`,
+  lasagna: `${FOTOS}/DSC04348-scaled.jpg`,
+}
+
 export const productos = [
   // ALMUERZO EMPRESARIAL — el producto protagonista de este restaurante
   { id: 'almuerzo-empresarial', nombre: 'Almuerzo Empresarial', categoria: 'empresarial', descripcion: 'Entrada, plato fuerte, jugo de fruta y postre.', destacado: true, precio: 25900 },

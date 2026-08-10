@@ -1210,8 +1210,8 @@ a.menu-portafolio-card:hover {
   grid-template-columns: 1fr 1.2fr;
   align-items: center;
   gap: 20px;
-  min-height: 480px;
-  background: linear-gradient(135deg, var(--menu-primario), var(--menu-primario-oscuro));
+  min-height: 540px;
+  background: linear-gradient(135deg, var(--menu-hero-desde, var(--menu-primario)), var(--menu-hero-hasta, var(--menu-primario-oscuro)));
   border-radius: 24px;
   overflow: hidden;
   margin: 0 15px;
@@ -1223,23 +1223,23 @@ a.menu-portafolio-card:hover {
   align-items: center;
   justify-content: center;
   height: 100%;
-  min-height: 280px;
+  min-height: 420px;
 }
 
 .menu-hero__carrusel {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 460px;
 }
 
 .menu-hero__carrusel-img {
   position: absolute;
   inset: 0;
   margin: auto;
-  max-width: 100%;
-  max-height: 320px;
+  max-width: 105%;
+  max-height: 460px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.4));
   opacity: 0;
   transform: scale(0.94);
   transition: opacity 0.9s ease, transform 0.9s ease;
@@ -1251,14 +1251,21 @@ a.menu-portafolio-card:hover {
   z-index: 1;
 }
 
+/* No se fuerza a círculo: algunos logos son íconos cuadrados (Tifi) y
+   otros son isotipos anchos (Mi Nona, Dalila) — un círculo con
+   object-fit:cover recortaba esos horizontales dejando solo un
+   pedazo ilegible. Con altura fija + object-fit:contain el logo
+   completo siempre es visible, sea cual sea su forma. */
 .menu-hero__logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 52px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
   margin-bottom: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(4px);
 }
 
 .menu-hero__contenido {
@@ -1650,10 +1657,10 @@ a.menu-portafolio-card:hover {
 }
 
 .menu-footer__marca img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
 }
 
 .menu-footer__marca strong {
@@ -1723,6 +1730,11 @@ a.menu-portafolio-card:hover {
   --menu-sobre-primario: #fff7ec;
   --menu-acento: #f2c879;
   --menu-fuente-titulo: 'Fraunces', 'Georgia', serif;
+  /* El hero usa un par de colores propio (mas vivo que primario/oscuro,
+     que se quedan mas terrosos para botones, tabs y tarjetas) — pedido
+     explicito del cliente: el hero se veia demasiado oscuro. */
+  --menu-hero-desde: #f7ab3e;
+  --menu-hero-hasta: #e35d1f;
 }
 
 /* ---------- TEMA: MI NONA ---------- */
@@ -1836,8 +1848,8 @@ a.menu-portafolio-card:hover {
 
   .menu-hero__carrusel,
   .menu-hero__carrusel-img {
-    max-height: 200px;
-    height: 200px;
+    max-height: 260px;
+    height: 260px;
   }
 
   .menu-hero__titulo {

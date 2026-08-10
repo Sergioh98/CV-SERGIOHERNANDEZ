@@ -79,6 +79,20 @@ export const coloresPorCategoria = {
 
 const IMG = 'https://dalilavalledupar.com/wp-content/uploads'
 
+// fotosPorCategoria: foto real representativa (tomada del propio sitio
+// de Dalila) para productos sin foto propia dentro de esa categoría.
+export const fotosPorCategoria = {
+  desayunos: `${IMG}/2023/11/Brunch.jpg`,
+  brunch: `${IMG}/2023/11/Brunch.jpg`,
+  postres: `${IMG}/2024/01/pay.jpg`,
+  'platos-fuertes': `${IMG}/2025/01/Bife-Chorizo-00015.jpg`,
+  pastas: `${IMG}/2023/11/Pasta-02.jpg`,
+  lasagna: `${IMG}/2023/11/Pasta-02.jpg`,
+  pizzetas: `${IMG}/2024/01/Pizza-02121212.jpg`,
+  sandwich: `${IMG}/2023/11/Sha1.jpg`,
+  hamburguesas: `${IMG}/2023/11/Sha1.jpg`,
+}
+
 export const productos = [
   // DESAYUNOS
   { id: 'rosquetes', nombre: 'Rosquetes', categoria: 'desayunos', precio: 12000 },

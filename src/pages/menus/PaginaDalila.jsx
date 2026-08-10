@@ -3,7 +3,7 @@ import MenuHero from '../../components/menu/MenuHero'
 import CategoryTabs from '../../components/menu/CategoryTabs'
 import ProductCarousel from '../../components/menu/ProductCarousel'
 import RestaurantFooter from '../../components/menu/RestaurantFooter'
-import { restaurante, categorias, productos, coloresPorCategoria } from '../../data/restaurantes/dalila'
+import { restaurante, categorias, productos, coloresPorCategoria, fotosPorCategoria } from '../../data/restaurantes/dalila'
 
 const statsHero = [
   { valor: '20', etiqueta: 'Categorías' },
@@ -11,13 +11,15 @@ const statsHero = [
   { valor: '100+', etiqueta: 'Platos y bebidas' },
 ]
 
-// Fotos reales del menú/galería de Dalila.
+// Fotos reales del menú/galería de Dalila (dalilavalledupar.com),
+// recortadas sin fondo para el hero — igual que el estilo "producto
+// flotante" de la referencia visual.
 const imagenesHero = [
-  'https://dalilavalledupar.com/wp-content/uploads/2023/11/Brunch.jpg',
-  'https://dalilavalledupar.com/wp-content/uploads/2025/01/Bife-Chorizo-00015.jpg',
-  'https://dalilavalledupar.com/wp-content/uploads/2023/11/Pasta-02.jpg',
-  'https://dalilavalledupar.com/wp-content/uploads/2024/01/Pizza-02121212.jpg',
-  'https://dalilavalledupar.com/wp-content/uploads/2024/01/Picada-de-chicharron-022.jpg',
+  'images/dalila/hero-bife.webp',
+  'images/dalila/hero-pizza.webp',
+  'images/dalila/hero-sandwich.webp',
+  'images/dalila/hero-postres.webp',
+  'images/dalila/hero-brunch.webp',
 ]
 
 // PaginaDalila: a diferencia de Tiffy/Minona, aquí no hay un único
@@ -51,6 +53,7 @@ function PaginaDalila() {
           whatsapp={restaurante.whatsapp}
           nombreRestaurante={restaurante.nombreCompleto}
           coloresPorCategoria={coloresPorCategoria}
+          fotosPorCategoria={fotosPorCategoria}
         />
       </main>
 

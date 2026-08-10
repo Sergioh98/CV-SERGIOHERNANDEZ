@@ -3,7 +3,7 @@ import MenuHero from '../../components/menu/MenuHero'
 import CategoryTabs from '../../components/menu/CategoryTabs'
 import ProductCarousel from '../../components/menu/ProductCarousel'
 import RestaurantFooter from '../../components/menu/RestaurantFooter'
-import { restaurante, categorias, productos, coloresPorCategoria } from '../../data/restaurantes/tiffy'
+import { restaurante, categorias, productos, coloresPorCategoria, fotosPorCategoria } from '../../data/restaurantes/tiffy'
 
 const statsHero = [
   { valor: '10+', etiqueta: 'Sabores de torta' },
@@ -51,6 +51,7 @@ function PaginaTiffy() {
           whatsapp={restaurante.whatsapp}
           nombreRestaurante={restaurante.nombreCompleto}
           coloresPorCategoria={coloresPorCategoria}
+          fotosPorCategoria={fotosPorCategoria}
         />
       </main>
 

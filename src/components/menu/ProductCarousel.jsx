@@ -6,7 +6,7 @@ import { formatoPrecioCOP } from '../../utils/menuHelpers'
 // la foto "desliza" hacia un lado al cambiar y las especificaciones
 // (nombre, descripción, precio/tamaños) aparecen debajo. Nada de grid
 // de tarjetas apiladas. Funciona con flechas, puntos, y swipe táctil.
-function ProductCarousel({ productos, whatsapp, nombreRestaurante, coloresPorCategoria }) {
+function ProductCarousel({ productos, whatsapp, nombreRestaurante, coloresPorCategoria, fotosPorCategoria }) {
   const [indice, setIndice] = useState(0)
   const inicioSwipe = useRef(null)
 
@@ -41,15 +41,19 @@ function ProductCarousel({ productos, whatsapp, nombreRestaurante, coloresPorCat
       <div className="menu-carrusel__viewport" onTouchStart={manejarInicioSwipe} onTouchEnd={manejarFinSwipe}>
         <div className="menu-carrusel__pista" style={{ transform: `translateX(-${indice * 100}%)` }}>
           {productos.map((item) => {
+            // Prioridad: foto propia del producto > foto real
+            // representativa de la categoría > degradado de marca con
+            // ícono (solo cuando no existe ninguna foto real).
+            const foto = item.imagen || fotosPorCategoria?.[item.categoria]
             const gradiente = coloresPorCategoria?.[item.categoria]
             return (
               <div
                 className="menu-carrusel__slide"
                 key={item.id}
-                style={!item.imagen && gradiente ? { background: `linear-gradient(135deg, ${gradiente[0]}, ${gradiente[1]})` } : undefined}
+                style={!foto && gradiente ? { background: `linear-gradient(135deg, ${gradiente[0]}, ${gradiente[1]})` } : undefined}
               >
-                {item.imagen ? (
-                  <img src={item.imagen} alt={item.nombre} loading="lazy" />
+                {foto ? (
+                  <img src={foto} alt={item.nombre} loading="lazy" />
                 ) : (
                   <i className="ri-restaurant-2-line" aria-hidden="true" />
                 )}

@@ -3,7 +3,7 @@ import MenuHero from '../../components/menu/MenuHero'
 import CategoryTabs from '../../components/menu/CategoryTabs'
 import ProductCarousel from '../../components/menu/ProductCarousel'
 import RestaurantFooter from '../../components/menu/RestaurantFooter'
-import { restaurante, categorias, productos, coloresPorCategoria } from '../../data/restaurantes/minona'
+import { restaurante, categorias, productos, coloresPorCategoria, fotosPorCategoria } from '../../data/restaurantes/minona'
 
 const statsHero = [
   { valor: '$25.900', etiqueta: 'Almuerzo empresarial' },
@@ -11,13 +11,15 @@ const statsHero = [
   { valor: '7am-10pm', etiqueta: 'Todos los días' },
 ]
 
-// Fotos reales del menú de Mi Nona, rotan en el hero.
+// Fotos reales del menú de Mi Nona (fotografía propia del negocio,
+// tomada de minonacafe.com), recortadas sin fondo para el hero — igual
+// que el estilo "producto flotante" de la referencia visual.
 const imagenesHero = [
-  'https://minonacafe.com/wp-content/uploads/2024/11/Pizza-02-Mi-nona-cafe-valledupar.jpg',
-  'https://minonacafe.com/wp-content/uploads/2024/11/DSC02613-scaled.jpg',
-  'https://minonacafe.com/wp-content/uploads/2024/11/DSC02464-1-scaled.jpg',
-  'https://minonacafe.com/wp-content/uploads/2024/11/DSC04348-scaled.jpg',
-  'https://minonacafe.com/wp-content/uploads/2024/11/DSC06181-1-scaled.jpg',
+  'images/minona/hero-almuerzo.webp',
+  'images/minona/hero-pizza.webp',
+  'images/minona/hero-pasta.webp',
+  'images/minona/hero-brunch.webp',
+  'images/minona/hero-omelette.webp',
 ]
 
 // PaginaMinona: el producto protagonista es el Almuerzo Empresarial
@@ -50,6 +52,7 @@ function PaginaMinona() {
           whatsapp={restaurante.whatsapp}
           nombreRestaurante={restaurante.nombreCompleto}
           coloresPorCategoria={coloresPorCategoria}
+          fotosPorCategoria={fotosPorCategoria}
         />
       </main>
 

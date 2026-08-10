@@ -12,21 +12,23 @@ import PaginaDalila from './pages/menus/PaginaDalila'
 
 // Rutas de restaurante: son paginas "cliente" que deben sentirse como
 // el sitio propio del negocio, no como una seccion mas del portafolio,
-// asi que ocultan el navbar de "Sergio Dev" (a diferencia de /menus,
-// que si es parte de la navegacion normal del portafolio).
-const RUTAS_SIN_NAVBAR = ['/tiffy', '/minona', '/dalila']
+// asi que ocultan el navbar de "Sergio Dev" Y el fondo decorativo del
+// CV (grilla tecnologica + glow del cursor) — ese estilo pertenece al
+// portafolio, no a los menus (a diferencia de /menus, que si es parte
+// de la navegacion normal del portafolio y conserva ambos).
+const RUTAS_SIN_CHROME_PORTAFOLIO = ['/tiffy', '/minona', '/dalila']
 
 // Shell vive DENTRO de HashRouter porque useLocation necesita el
 // contexto del router para saber en que ruta estamos.
 function Shell() {
   const { pathname } = useLocation()
-  const mostrarNavbar = !RUTAS_SIN_NAVBAR.includes(pathname)
+  const esPaginaDeRestaurante = RUTAS_SIN_CHROME_PORTAFOLIO.includes(pathname)
 
   return (
     <>
       <Loader />
-      <FondoAmbiente />
-      {mostrarNavbar && <Navbar />}
+      {!esPaginaDeRestaurante && <FondoAmbiente />}
+      {!esPaginaDeRestaurante && <Navbar />}
 
       <Routes>
         <Route path="/" element={<PaginaDesarrollador />} />
